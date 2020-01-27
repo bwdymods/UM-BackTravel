@@ -60,6 +60,11 @@
       <HintPath>D:\Steam\steamapps\common\UnderMine\UnderMine_Data\Managed\UnderMine.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnderModAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\UnderModAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>D:\Steam\steamapps\common\UnderMine\UnderMine_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
@@ -91,11 +96,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UnderMod\UnderMod.csproj">
-      <Project>{a17f7de7-a4d9-41f4-af62-c71e858cd8fd}</Project>
-      <Name>UnderMod</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <Content Include="UnderModAPI.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

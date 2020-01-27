@@ -1,8 +1,8 @@
 ﻿{
   "Name": "BackTravel",
-  "Author": "bwdy",
-  "Version": "1.0",
+  "Author": "bwdymods",
+  "Version": "1.1",
   "Tagline": "A mod that allows travel to previous zones.",
   "DLL": "BackTravel.dll",
-  "API": "1.0.0.0"
+  "API": "1.1.0.0"
 }

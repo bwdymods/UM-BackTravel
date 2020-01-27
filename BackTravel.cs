@@ -6,16 +6,16 @@ using DG.Tweening;
 
 namespace BackTravel
 {
-    public class BackTravelMod : Mod
+    public class BackTravelMod : IMod
     {
-        public override void OnEntry()
+        public void OnEntry()
         {
-            Patcher.Patch(this, "Thor.WarpPopup:Initialize", "WarpPopup", null);
+            UnderMod.GetAPI().GetPatcher().Patch(this, typeof(Thor.WarpPopup), "Initialize", "WarpPopup", null);
         }
-
+        
         private static bool WarpPopup(Thor.WarpPopup __instance, object data, Thor.Entity owner)
         {
-            Logger.Info("Intercepting warp menu to allow back-travel...");
+            UnderMod.GetAPI().GetLogger().Info("Intercepting warp menu to allow back-travel...");
 
             //snag some private fields via reflection helper
             var mListItems = Reflector.GetField<List<Thor.WarpListItem>>(__instance, "mListItems");
@@ -57,7 +57,7 @@ namespace BackTravel
                     warpListItem = ((warpListItem == null) ? m_itemPrefab : UnityEngine.Object.Instantiate(m_itemPrefab, m_container.transform));
                     warpListItem.Initialize(((owner != null) ? owner.PlayerID : 0), map);
                     mListItems.Add(warpListItem);
-                } /* this is the mod */ else if (map.IsDiscovered && map.UserData < Thor.Game.Instance.Simulation.Zone.Data.ZoneNumber)
+                } else if (map.IsDiscovered && map.UserData < Thor.Game.Instance.Simulation.Zone.Data.ZoneNumber)
                 {
                     //maybe do something different for these ones?
                     warpListItem = ((warpListItem == null) ? m_itemPrefab : UnityEngine.Object.Instantiate(m_itemPrefab, m_container.transform));
@@ -85,6 +85,8 @@ namespace BackTravel
 
             //return false to stop the original from running
             return false;
+            
         }
+    
     }
 }
